@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { invitation } from "@/content/invitation";
 
 function NotFoundComponent() {
   return (
@@ -73,38 +74,61 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Dr. Aditya & Sakshi — Wedding Invitation" },
-      {
-        name: "description",
-        content: "Join us in celebrating the wedding of Dr. Aditya Bansal & Sakshi on Saturday, 19 September 2026 at The Grand JD, Patiala.",
-      },
-      { name: "theme-color", content: "#fdf8ef" },
-      { property: "og:type", content: "website" },
-      { property: "og:title", content: "Dr. Aditya & Sakshi — Wedding Invitation" },
-      {
-        property: "og:description",
-        content: "Join us in celebrating the wedding of Dr. Aditya Bansal & Sakshi on Saturday, 19 September 2026 at The Grand JD, Patiala.",
-      },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Marcellus&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Karla:wght@300;400;600&display=swap",
-      },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
-    ],
-  }),
+  head: () => {
+    const { meta, couple, dateLabel, venue } = invitation;
+    const siteUrl = meta.siteUrl;
+    const ogImageUrl = `${siteUrl}${meta.ogImage}`;
+    const pageTitle = meta.ogTitle;
+    const pageDescription = meta.ogDescription;
+
+    return {
+      meta: [
+        { charSet: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        { title: pageTitle },
+        { name: "description", content: pageDescription },
+        { name: "theme-color", content: "#fdf8ef" },
+
+        // Open Graph / Facebook / WhatsApp
+        { property: "og:type", content: "website" },
+        { property: "og:url", content: siteUrl },
+        { property: "og:title", content: pageTitle },
+        { property: "og:description", content: pageDescription },
+        { property: "og:image", content: ogImageUrl },
+        { property: "og:image:secure_url", content: ogImageUrl },
+        { property: "og:image:type", content: "image/jpeg" },
+        { property: "og:image:width", content: "1200" },
+        { property: "og:image:height", content: "630" },
+        { property: "og:image:alt", content: `${couple.title} Wedding Celebration — ${dateLabel}` },
+        { property: "og:site_name", content: `${couple.title} Wedding Storybook` },
+
+        // Twitter Card
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:url", content: siteUrl },
+        { name: "twitter:title", content: pageTitle },
+        { name: "twitter:description", content: pageDescription },
+        { name: "twitter:image", content: ogImageUrl },
+        { name: "twitter:image:alt", content: `${couple.title} Wedding Celebration — ${dateLabel}` },
+      ],
+      links: [
+        {
+          rel: "canonical",
+          href: siteUrl,
+        },
+        {
+          rel: "stylesheet",
+          href: appCss,
+        },
+        { rel: "preconnect", href: "https://fonts.googleapis.com" },
+        { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=Marcellus&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Karla:wght@300;400;600&display=swap",
+        },
+        { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      ],
+    };
+  },
 
   shellComponent: RootShell,
   component: RootComponent,
