@@ -3,105 +3,70 @@ import { motion, AnimatePresence } from "motion/react";
 import { Volume2, VolumeX, Music } from "lucide-react";
 
 /**
- * Ambient royal Shehnai / Indian wedding background audio player
- * Uses a synthesized raga chime & Indian flute / shehnai harmonics via Web Audio API
- * combined with an audio element option, ensuring 100% reliable, zero-broken-link playback anywhere.
+ * Celebratory Indian Wedding Audio Player
+ * Plays high-quality traditional Shehnai & Sitar melody (/music.mp3)
+ * with graceful autoplay upon opening envelope or tapping anywhere,
+ * plus interactive visualizer bars and floating mute/unmute control.
  */
 export function MusicPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [hasInteracted, setHasInteracted] = useState(false);
-  const audioCtxRef = useRef<AudioContext | null>(null);
-  const timerRef = useRef<number | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  const startSynthesizedMusic = () => {
-    try {
-      const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-      if (!audioCtxRef.current) {
-        audioCtxRef.current = new AudioCtx();
-      }
-      const ctx = audioCtxRef.current;
-      if (ctx.state === "suspended") {
-        void ctx.resume();
-      }
-
-      // Traditional Indian Wedding Raag Bilawal / Yaman notes (Sa, Re, Ga, Ma, Pa, Dha, Ni)
-      const baseFreqs = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25];
-      let step = 0;
-
-      const playNote = () => {
-        if (!audioCtxRef.current || audioCtxRef.current.state !== "running") return;
-        const now = ctx.currentTime;
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-
-        // Warm harmonic tone resembling acoustic sitar / shehnai
-        osc.type = "sine";
-        const noteIndex = [0, 2, 4, 7, 5, 4, 2, 0, 4, 7, 9, 7, 4, 2][step % 14];
-        const freq = (baseFreqs[noteIndex % baseFreqs.length] || 261.63) * (noteIndex > 7 ? 1.5 : 1);
-        osc.frequency.setValueAtTime(freq, now);
-
-        // Soft envelope
-        gain.gain.setValueAtTime(0.001, now);
-        gain.gain.exponentialRampToValueAtTime(0.045, now + 0.3);
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.8);
-
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-
-        osc.start(now);
-        osc.stop(now + 1.9);
-
-        step++;
-        timerRef.current = window.setTimeout(playNote, 600 + Math.random() * 400);
-      };
-
-      playNote();
-    } catch {
-      // AudioContext unavailable
-    }
-  };
-
-  const stopSynthesizedMusic = () => {
-    if (timerRef.current) {
-      clearTimeout(timerRef.current);
-      timerRef.current = null;
-    }
-    if (audioCtxRef.current && audioCtxRef.current.state === "running") {
-      void audioCtxRef.current.suspend();
-    }
-  };
-
-  const toggleMusic = () => {
-    setHasInteracted(true);
-    if (isPlaying) {
-      stopSynthesizedMusic();
-      setIsPlaying(false);
-    } else {
-      startSynthesizedMusic();
-      setIsPlaying(true);
-    }
-  };
-
-  // Listen for user tap anywhere on the page to start background audio smoothly
   useEffect(() => {
-    const handleFirstGesture = () => {
-      if (!hasInteracted && !isPlaying) {
-        startSynthesizedMusic();
-        setIsPlaying(true);
-        setHasInteracted(true);
+    const audio = new Audio("/music.mp3");
+    audio.loop = true;
+    audio.preload = "auto";
+    audioRef.current = audio;
+
+    const playAudio = () => {
+      if (audio.paused) {
+        audio
+          .play()
+          .then(() => {
+            setIsPlaying(true);
+          })
+          .catch(() => {
+            // Browser autoplay restrictions until user interaction
+          });
       }
     };
 
-    window.addEventListener("click", handleFirstGesture, { once: true });
-    window.addEventListener("touchstart", handleFirstGesture, { once: true });
+    // Auto-start music on first user gesture (touch or click)
+    const handleFirstGesture = () => {
+      playAudio();
+      window.removeEventListener("click", handleFirstGesture);
+      window.removeEventListener("touchstart", handleFirstGesture);
+      window.removeEventListener("scroll", handleFirstGesture);
+    };
+
+    window.addEventListener("click", handleFirstGesture, { passive: true });
+    window.addEventListener("touchstart", handleFirstGesture, { passive: true });
+    window.addEventListener("scroll", handleFirstGesture, { passive: true, once: true });
 
     return () => {
       window.removeEventListener("click", handleFirstGesture);
       window.removeEventListener("touchstart", handleFirstGesture);
-      if (timerRef.current) clearTimeout(timerRef.current);
-      if (audioCtxRef.current) void audioCtxRef.current.close();
+      window.removeEventListener("scroll", handleFirstGesture);
+      audio.pause();
+      audioRef.current = null;
     };
-  }, [hasInteracted, isPlaying]);
+  }, []);
+
+  const toggleMusic = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (isPlaying) {
+      audio.pause();
+      setIsPlaying(false);
+    } else {
+      audio
+        .play()
+        .then(() => setIsPlaying(true))
+        .catch(() => setIsPlaying(false));
+    }
+  };
 
   return (
     <div className="fixed bottom-5 left-5 z-40">
@@ -111,7 +76,7 @@ export function MusicPlayer() {
         whileHover={{ scale: 1.06 }}
         whileTap={{ scale: 0.94 }}
         aria-label={isPlaying ? "Mute celebratory music" : "Play celebratory music"}
-        className="glass-plate flex items-center gap-2.5 rounded-full px-4 py-2.5 shadow-lg backdrop-blur-md transition-all duration-300 hover:border-gold"
+        className="glass-plate flex items-center gap-2.5 rounded-full px-4 py-2.5 shadow-lg backdrop-blur-md transition-all duration-300 hover:border-gold cursor-pointer"
       >
         <div className="relative flex h-5 w-5 items-center justify-center text-primary">
           {isPlaying ? (
@@ -134,7 +99,7 @@ export function MusicPlayer() {
                   className="w-0.5 bg-gold-deep rounded-full"
                   animate={{ height: ["20%", `${h * 100}%`, "20%"] }}
                   transition={{
-                    duration: 0.6 + i * 0.15,
+                    duration: 0.5 + i * 0.12,
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
