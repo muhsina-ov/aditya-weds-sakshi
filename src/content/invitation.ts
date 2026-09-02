@@ -4,10 +4,10 @@
 
 export const invitation = {
   meta: {
-    siteUrl: "https://aditya-weds-sakshi.pages.dev",
+    siteUrl: "https://aditya-wedss-sakshi.invitingyou.top",
     ogImage: "/og-image.jpg",
     ogTitle: "Dr. Aditya & Sakshi — Royal Wedding Invitation",
-    ogDescription: "Together with our families, we joyfully invite you to celebrate the wedding of Dr. Aditya Bansal & Sakshi on Saturday, 19 September 2026 at The Grand JD, Patiala.",
+    ogDescription: "Join us in celebrating the wedding of Dr. Aditya Bansal & Sakshi on Saturday, 19 Sept 2026 at The Grand JD, Patiala.",
   },
   couple: {
     groom: "Dr. Aditya Bansal",
