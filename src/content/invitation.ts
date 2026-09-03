@@ -6,16 +6,17 @@ export const invitation = {
   meta: {
     siteUrl: "https://aditya-wedss-sakshi.invitingyou.top",
     ogImage: "/og-image.jpg",
-    ogTitle: "Dr. Aditya & Sakshi — Royal Wedding Invitation",
+    ogTitle: "Dr. Aditya & Sakshi — Wedding Invitation",
     ogDescription: "Join us in celebrating the wedding of Dr. Aditya Bansal & Sakshi on Saturday, 19 Sept 2026 at The Grand JD, Patiala.",
   },
   couple: {
     groom: "Dr. Aditya Bansal",
     groomShort: "Dr. Aditya",
-    groomParents: "S/o Sh. Ravinder Kumar Bansal & Smt. Anju Bansal",
+    groomGrandparents: "Grandson Late Smt. Shimla Devi and Late Sh. Brij Lal Bansal",
+    groomParents: "S/o Smt. Anju Bansal and Sh. Ravinder Kumar Bansal",
     bride: "Sakshi",
     brideShort: "Sakshi",
-    brideParents: "D/o Sh. Vinod Mahajan & Smt. Rajni Aggarwal",
+    brideParents: "D/o Smt. Rajni Aggarwal and Sh. Vibod Mahajan",
     initials: "A & S",
     title: "Dr. Aditya & Sakshi",
   },
@@ -46,13 +47,14 @@ export const invitation = {
     groom: {
       name: "Dr. Aditya Bansal",
       role: "The Groom",
-      parents: "S/o Sh. Ravinder Kumar Bansal & Smt. Anju Bansal",
+      grandparents: "Grandson Late Smt. Shimla Devi and Late Sh. Brij Lal Bansal",
+      parents: "S/o Smt. Anju Bansal and Sh. Ravinder Kumar Bansal",
       text: "A compassionate doctor with a warm heart and gentle smile. Ready to embark on life's most beautiful chapter with elegance, joy, and devotion.",
     },
     bride: {
       name: "Sakshi",
       role: "The Bride",
-      parents: "D/o Sh. Vinod Mahajan & Smt. Rajni Aggarwal",
+      parents: "D/o Smt. Rajni Aggarwal and Sh. Vibod Mahajan",
       text: "Radiant, graceful, and full of warmth. With a heart that brings joy wherever she goes, stepping into a new world of togetherness.",
     },
   },
@@ -67,7 +69,7 @@ export const invitation = {
       title: "Lunch",
       time: "1:00 PM",
       icon: "utensils",
-      description: "A royal feast of celebratory delicacies.",
+      description: "A feast of celebratory delicacies.",
     },
     {
       title: "Dance & Celebration",
@@ -93,7 +95,7 @@ export const invitation = {
       no: "III",
       title: "The Celebration",
       when: "19 September 2026",
-      text: "Beneath the royal arches of Patiala, surrounded by the warmth and blessings of our cherished family and friends.",
+      text: "Beneath the beautiful arches of Patiala, surrounded by the warmth and blessings of our cherished family and friends.",
     },
     {
       no: "IV",
@@ -105,24 +107,19 @@ export const invitation = {
   familyRoster: {
     heading: "We can't wait to celebrate with you",
     subheading: "WITH LOVE, THE BANSAL FAMILY",
-    elders: "Late Sh. Brij Lal Bansal — Late Smt. Shimla Devi",
-    couples: [
-      "Mohinder Paul Bansal — Veena Bansal",
-      "Dr. Rajinder Bansal — Dr. Shubnam Bansal",
-      "Ravinder Kumar Bansal — Anju Bansal",
-      "Dr. Tulesh Bansal — Dr. Sakshi Bansal",
-      "Dr. Manisha Singla — Dr. Mukesh Singla",
+    members: [
+      "DR. MANISHA SINGLA - DR. MUKESH SINGLA",
+      "SMT. AJIT DEVI - LATE SH. MADAN LAL",
+      "VEENA BANSAL - MOHINDER PAUL BANSAL",
+      "DR. SHABNAM BANSAL - DR. RAJINDER BANSAL (VC BFUHS)",
+      "ANJU BANSAL - RAVINDER KUMAR BANSAL",
+      "DR. SAKSHI BANSAL - DR. TULESH BANSAL",
     ],
-    youth: [
-      "Dr. Uday Bansal",
-      "Dr. Vasu Bansal",
-      "Dr. Vibhu Bansal",
-    ],
-    kids: [
-      "Manthan Singla",
-      "Sanaya Bansal",
-      "Kavya Singla",
-      "Anaya Bansal",
+    youth: "DR. UDAY BANSAL, DR. VASU BANSAL, DR. VIBHU BANSAL",
+    kids: "MANTHAN SINGLA, SANAYA BANSAL, KAVYA SINGLA, ANAYA BANSAL",
+    rsvp: [
+      "BRIJ LAL MADAN LAL IOC DEALERS CHEEMA MANDI",
+      "MODERN GROUP OF INSTITUTIONS BIR KALAN",
     ],
   },
   footer: {

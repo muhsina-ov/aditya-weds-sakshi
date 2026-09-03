@@ -9,6 +9,7 @@ function PortraitCard({
   alt,
   name,
   role,
+  grandparents,
   parents,
   text,
   flip,
@@ -17,6 +18,7 @@ function PortraitCard({
   alt: string;
   name: string;
   role: string;
+  grandparents?: string;
   parents?: string;
   text: string;
   flip?: boolean;
@@ -55,11 +57,20 @@ function PortraitCard({
             {role}
           </p>
           <h3 className="mt-2 text-2xl text-primary sm:text-3xl font-display">{name}</h3>
-          {parents && (
-            <p className="mt-1 font-script text-base text-primary/80 italic sm:text-lg">
-              ({parents})
-            </p>
-          )}
+          
+          <div className="mt-2 space-y-1">
+            {grandparents && (
+              <p className="font-script text-base text-primary/85 italic sm:text-lg">
+                ({grandparents})
+              </p>
+            )}
+            {parents && (
+              <p className="font-script text-base text-primary/85 italic sm:text-lg">
+                ({parents})
+              </p>
+            )}
+          </div>
+
           <div className="mx-auto my-3 h-px w-16 bg-gold/40" />
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{text}</p>
         </div>

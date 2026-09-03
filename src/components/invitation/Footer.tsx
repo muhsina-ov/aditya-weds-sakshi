@@ -108,7 +108,7 @@ export function Footer() {
       </AnimatePresence>
 
       <div className="relative z-20 mx-auto max-w-3xl px-5">
-        {/* Bansal Family Grand Tribute Card */}
+        {/* Bansal Family Tribute Card */}
         <Reveal delay={0.05}>
           <div className="plate paper-grain rounded-[2.2rem] p-7 sm:p-10 text-center border-2 border-gold/50 shadow-2xl backdrop-blur-md">
             <Ornament />
@@ -125,46 +125,48 @@ export function Footer() {
               <span className="h-px w-12 bg-gold/50 sm:w-20" />
             </div>
 
-            {/* Sacred Memory of Grandparents */}
-            <div className="mt-6 rounded-2xl bg-gold/10 p-4 border border-gold/30">
-              <p className="font-sans text-[0.62rem] tracking-[0.3em] text-gold-deep uppercase font-semibold">
-                In Sacred Memory & Blessings Of
-              </p>
-              <p className="mt-1 font-display text-base sm:text-lg font-semibold text-primary tracking-wide">
-                {familyRoster.elders}
-              </p>
-            </div>
-
-            {/* Family Couples & Elders */}
+            {/* Family Members */}
             <div className="mt-6 space-y-2.5">
-              {familyRoster.couples.map((couple) => (
+              {familyRoster.members.map((member) => (
                 <div
-                  key={couple}
-                  className="rounded-xl bg-white/40 py-2.5 px-4 font-display text-sm sm:text-base text-primary border border-gold/20 backdrop-blur-xs"
+                  key={member}
+                  className="rounded-xl bg-white/50 py-2.5 px-4 font-display text-sm sm:text-base font-medium text-primary border border-gold/20 backdrop-blur-xs tracking-wide"
                 >
-                  {couple}
+                  {member}
                 </div>
               ))}
             </div>
 
-            {/* Young Doctors / Youth */}
+            {/* Youth / Doctors */}
             <div className="mt-6 pt-5 border-t border-gold/25">
-              <p className="font-sans text-[0.6rem] tracking-[0.3em] text-gold-deep uppercase font-semibold mb-2">
+              <p className="font-sans text-[0.62rem] tracking-[0.3em] text-gold-deep uppercase font-semibold mb-2">
                 With Love & Warm Regards
               </p>
-              <p className="font-display text-sm sm:text-base font-semibold text-primary tracking-wide">
-                {familyRoster.youth.join("  ·  ")}
+              <p className="font-display text-sm sm:text-base font-semibold text-primary tracking-wider">
+                {familyRoster.youth}
               </p>
             </div>
 
             {/* Children */}
-            <div className="mt-4 pt-4 border-t border-gold/20">
-              <p className="font-sans text-[0.58rem] tracking-[0.3em] text-gold-deep uppercase font-semibold mb-1.5">
+            <div className="mt-5 pt-4 border-t border-gold/20">
+              <p className="font-sans text-[0.6rem] tracking-[0.3em] text-gold-deep uppercase font-semibold mb-2">
                 Little Blessings
               </p>
-              <p className="font-script text-base sm:text-lg text-primary/85 italic">
-                {familyRoster.kids.join(", ")}
+              <p className="font-display text-sm sm:text-base font-medium text-primary/90 tracking-wide">
+                {familyRoster.kids}
               </p>
+            </div>
+
+            {/* RSVP */}
+            <div className="mt-7 pt-6 border-t-2 border-gold/40">
+              <h4 className="font-sans text-sm font-bold tracking-[0.4em] text-gold-deep uppercase mb-3">
+                RSVP
+              </h4>
+              <div className="space-y-1.5 font-display text-sm sm:text-base font-semibold text-primary tracking-wide">
+                {familyRoster.rsvp.map((line) => (
+                  <p key={line}>{line}</p>
+                ))}
+              </div>
             </div>
           </div>
         </Reveal>

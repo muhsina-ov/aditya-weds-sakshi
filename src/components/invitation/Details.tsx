@@ -80,7 +80,7 @@ export function Details() {
                 </div>
                 <div>
                   <p className="font-sans text-[0.6rem] tracking-[0.36em] text-gold-deep uppercase font-semibold">
-                    The Royal Venue
+                    The Venue
                   </p>
                   <p className="mt-1 font-display text-xl leading-snug text-primary">{invitation.venue.name}</p>
                   <p className="font-sans text-xs text-muted-foreground">{invitation.venue.address}</p>
