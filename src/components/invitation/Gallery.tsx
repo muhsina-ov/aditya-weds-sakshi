@@ -3,10 +3,10 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { X, Sparkles, Heart } from "lucide-react";
 import { Ornament, Reveal, SectionTitle } from "./Reveal";
 
-const seatedImg = "/images/couple-seated.jpg";
-const danceWideImg = "/images/couple-dance-wide.jpg";
-const danceCloseImg = "/images/couple-dance-close.jpg";
-const ringsImg = "/images/couple-rings-hands.jpg";
+const seatedImg = "/img4.jpeg";
+const danceWideImg = "/img2.jpeg";
+const danceCloseImg = "/img3.jpeg";
+const ringsImg = "/img1.jpeg";
 
 const galleryPlates = [
   {
