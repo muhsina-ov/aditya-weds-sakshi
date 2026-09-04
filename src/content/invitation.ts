@@ -16,7 +16,7 @@ export const invitation = {
     groomParents: "S/o Smt. Anju Bansal and Sh. Ravinder Kumar Bansal",
     bride: "Sakshi",
     brideShort: "Sakshi",
-    brideParents: "D/o Smt. Rajni Aggarwal and Sh. Vibod Mahajan",
+    brideParents: "D/o Smt. Rajni Aggarwal and Sh. Vinod Mahajan",
     initials: "A & S",
     title: "Dr. Aditya & Sakshi",
   },
@@ -54,7 +54,7 @@ export const invitation = {
     bride: {
       name: "Sakshi",
       role: "The Bride",
-      parents: "D/o Smt. Rajni Aggarwal and Sh. Vibod Mahajan",
+      parents: "D/o Smt. Rajni Aggarwal and Sh. Vinod Mahajan",
       text: "Radiant, graceful, and full of warmth. With a heart that brings joy wherever she goes, stepping into a new world of togetherness.",
     },
   },
